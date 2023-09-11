@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTC Real Time Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: rgb(31, 29, 29);
+        }
+
+        h1 {
+            color: rgb(9, 137, 216);
+        }
+
+        p {
+            font-size: 1.5em;
+            color: white;
+
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: white;
+        }
+
+        img {
+            border-radius: 50%;
+            height: 100px;
+            width: auto;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Current UTC Time</h1>
+    <div>
+        <img src="./bida.jpg" data-testid="slackDisplayImage" alt="Bida" id="slackDisplayImage" />
+    </div>
+    <div>
+        <label>Slack Username:</label>
+        <p id="slackUserName" data-testid="slackUserName">Bida</p>
+    </div>
+
+    <div>
+        <label>Day of Week:</label>
+        <p id="currentDayOfTheWeek" data-testid="currentUTCTime"></p>
+    </div>
+    <div>
+        <label>Time of Day:</label>
+        <p id="currentUTCTime" data-testid="currentUTCTime"></p>
+    </div>
+    <div>
+        <label>Track:</label>
+        <p id="myTrack" data-testid="myTrack">Frontend</p>
+    </div>
+    <a id="githubURL" data-testid="githubURL"
+        href="https://github.com/mbidaiii/utc-time">https://github.com/mbidaiii/utc-time</a>
+
+
+    <script>
+        function getCurrentTime() {
+            const timeElement = document.getElementById("currentUTCTime")
+            const dayElement = document.getElementById("currentDayOfTheWeek")
+            let id = timeElement.dataset.testid;
+            console.log(id)
+            const now = new Date();
+            const dayOfTheWeek = now.toLocaleString("default", { weekday: "long" });
+            const time = now.getTime();
+            timeElement.textContent = time + ' ms';
+            dayElement.textContent = dayOfTheWeek;
+        }
+
+        getCurrentTime();
+        setInterval(getCurrentTime, 1000);
+    </script>
+</body>
+
+</html>
